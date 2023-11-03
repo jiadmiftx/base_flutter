@@ -1,15 +1,13 @@
 import 'package:flutter/foundation.dart';
-import 'package:mothercare_mobile/core/preference/pref_key_helper.dart';
-import 'package:mothercare_mobile/core/preference/preference_helper.dart';
-import 'package:mothercare_mobile/core/utils/notification/notification_service.dart';
-import 'package:mothercare_mobile/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:pgn_mobile/core/preference/pref_key_helper.dart';
+import 'package:pgn_mobile/core/preference/preference_helper.dart';
+import 'package:pgn_mobile/core/utils/notification/notification_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:mothercare_mobile/core/core.dart';
-import 'package:mothercare_mobile/core/flavor/flavor_config.dart';
-import 'package:mothercare_mobile/core/resource/injector/injection_container.dart' as injector;
-import 'package:mothercare_mobile/main.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/flavor/flavor_config.dart';
+import 'package:pgn_mobile/core/resource/injector/injection_container.dart' as injector;
+import 'package:pgn_mobile/main.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -35,10 +33,10 @@ void main() async {
   FlavorConfig(
     flavor: FlavorType.staging,
     color: Colors.red,
-    server: 'https://www.mothercare.co.id/rest/mothercare_website_english/V1',
+    server: '',
     webApiServer: '',
     values: const FlavorValues(
-      titleApp: "Bakso Staging",
+      titleApp: "Flutter Indonesia",
     ),
   );
   injector.init();

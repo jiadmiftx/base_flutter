@@ -2,16 +2,13 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:ui';
 import 'package:auto_route/auto_route.dart';
-import 'package:mothercare_mobile/core/constant/constant.dart';
-import 'package:mothercare_mobile/core/core.dart';
-import 'package:mothercare_mobile/core/helpers/secure_storage/storage_helper.dart';
-import 'package:mothercare_mobile/core/helpers/secure_storage/storage_key_helper.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/helpers/secure_storage/storage_helper.dart';
+import 'package:pgn_mobile/core/helpers/secure_storage/storage_key_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:flutter_html/flutter_html.dart' as html;
 
 Future<void> showSheet(BuildContext ctx, Widget sheet, {bool isControlled = true}) {
   return showModalBottomSheet(
@@ -636,7 +633,6 @@ class _WebviewContainerPageState extends State<WebviewContainerPage> {
   String _url = '';
 
   bool _isError = false;
-  bool _isSuccessPayment = false;
   InAppWebViewController? _webViewController;
   double progress = 0;
 
@@ -733,33 +729,17 @@ class _WebviewContainerPageState extends State<WebviewContainerPage> {
                       onWebViewCreated: (controller) {
                         _webViewController = controller;
                       },
-                      shouldOverrideUrlLoading: (controller, request) async {
-                        log('shouldOverrideUrlLoading kesini $request');
-                      },
-                      onLoadStart: (controller, url) async {
-                        log('onLoadStart kesini $url');
-                        log('onLoadStart kesini path ${url?.path}');
-                      },
+                      shouldOverrideUrlLoading: (controller, request) async {},
+                      onLoadStart: (controller, url) async {},
                       onLoadError: (controller, url, code, message) {
-                        log('onLoadError kesini path ${url?.path}');
-                        log('onLoadError kesini ${url?.path}');
                         _isError = true;
                         _setLoading(false);
                       },
                       onLoadHttpError: (controller, url, statusCode, description) {
-                        log('masuk kesini onLoadHttpError $url');
-                        log('masuk kesini onLoadHttpError path ${url?.path}');
                         _isError = true;
                         _setLoading(false);
                       },
                       onLoadStop: (controller, url) {
-                        log('masuk kesini onLoadStop $url');
-                        log('masuk kesini onLoadStop path ${url?.path}');
-                        if (url?.path == '/success_payment') {
-                          _setLoading(false);
-                        } else if (url?.path == '/maplist/index/appview') {
-                          _setLoading(false);
-                        }
                         _setLoading(false);
                       },
                       onDownloadStartRequest: (controller, downloadStartRequest) async {},

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/services.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:mothercare_mobile/core/core.dart';
+import 'package:pgn_mobile/core/core.dart';
 
 DeviceInfoItem deviceInfo = DeviceInfoItem();
 

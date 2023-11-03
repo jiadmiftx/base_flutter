@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:mothercare_mobile/core/config/helpers/lang_config.dart';
-import 'package:mothercare_mobile/core/config/model/language_response.dart';
+import 'package:pgn_mobile/core/config/helpers/lang_config.dart';
+import 'package:pgn_mobile/core/config/model/language_response.dart';
 import 'package:flutter/material.dart';
-import 'package:mothercare_mobile/core/core.dart';
-import 'package:mothercare_mobile/core/utils/extensions/widget_util.dart';
-import 'package:mothercare_mobile/generated/l10n.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/utils/extensions/widget_util.dart';
 
 class LanguageDialog extends StatefulWidget {
   final String lang;

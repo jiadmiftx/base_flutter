@@ -1,11 +1,8 @@
 import 'dart:io';
-
-import 'package:mothercare_mobile/core/core.dart';
-import 'package:mothercare_mobile/features/notifikasi/bloc/notification_bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:mothercare_mobile/generated/l10n.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:flutter/material.dart';
+import 'package:pgn_mobile/generated/l10n.dart';
 
 class AppBarsCenterLogo extends StatelessWidget implements PreferredSizeWidget {
   const AppBarsCenterLogo({
@@ -19,7 +16,7 @@ class AppBarsCenterLogo extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: BaseColor.primaryColor,
       automaticallyImplyLeading: false,
       leading: Image.asset(
-        getSourceByPng('ic_mothercare_white'),
+        getSourceByPng('base_icon'),
       ).leftPadded(),
       title: Container(
         decoration: BoxDecoration(
@@ -37,7 +34,11 @@ class AppBarsCenterLogo extends StatelessWidget implements PreferredSizeWidget {
       ),
       centerTitle: true,
       actions: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.document_scanner_outlined).rightPadded16()),
+        IconButton(
+            onPressed: () {
+              context.router.push(NotificationsPageRoute());
+            },
+            icon: Icon(Icons.notifications_none_rounded).rightPadded16()),
         IconButton(onPressed: () {}, icon: Icon(Icons.favorite_border_outlined).rightPadded16()),
       ],
     );

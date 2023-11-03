@@ -1,12 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:mothercare_mobile/core/core.dart';
+import 'package:pgn_mobile/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 class ImagePickerWidget<T> extends StatefulWidget {
   final TextEditingController controller;

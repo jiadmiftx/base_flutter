@@ -1,6 +1,6 @@
 {
-    "name": "mothercare_mobile",
-    "short_name": "mothercare_mobile",
+    "name": "pgn_mobile",
+    "short_name": "pgn_mobile",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

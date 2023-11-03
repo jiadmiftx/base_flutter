@@ -1,7 +1,7 @@
-import 'package:mothercare_mobile/core/resource/models/region_base_model.dart';
-import 'package:mothercare_mobile/core/resource/repositories/repository.dart';
-import 'package:mothercare_mobile/features/register/model/otp_validate_response.dart';
-import 'package:mothercare_mobile/features/register/model/register_response.dart';
+import 'package:pgn_mobile/core/resource/models/region_base_model.dart';
+import 'package:pgn_mobile/core/resource/repositories/repository.dart';
+import 'package:pgn_mobile/features/register/model/otp_validate_response.dart';
+import 'package:pgn_mobile/features/register/model/register_response.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';

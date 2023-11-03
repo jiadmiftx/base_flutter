@@ -1,6 +1,6 @@
-import 'package:mothercare_mobile/features/ektp/ektp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pgn_mobile/core/core.dart';
 
 class CopiableText extends StatelessWidget {
   final String text;

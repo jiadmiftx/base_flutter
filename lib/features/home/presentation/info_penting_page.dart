@@ -1,8 +1,9 @@
-import 'package:mothercare_mobile/features/ektp/ektp.dart';
-import 'package:mothercare_mobile/features/home/bloc/home_bloc.dart';
-import 'package:mothercare_mobile/features/profile/bloc/profile_bloc.dart';
-import 'package:mothercare_mobile/features/profile/model/user_profile_response.dart';
-import 'package:flutter_html/flutter_html.dart' as html;
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/utils/extensions/widget_util.dart';
+import 'package:pgn_mobile/features/home/bloc/home_bloc.dart';
 
 @RoutePage()
 class InfoPentingPage extends StatefulWidget {
@@ -29,54 +30,7 @@ class _InfoPentingPageState extends State<InfoPentingPage> {
         ),
         child: SafeArea(
           child: SingleChildScrollView(
-            child: LeftAlignedColumn(children: [
-              ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: state.userProfileResponse?.response?.data?.item?.faq?.length ?? 0,
-                itemBuilder: (context, index) {
-                  return Theme(
-                    data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12),
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 4,
-                              color: Colors.black.withOpacity(0.05),
-                              spreadRadius: 0,
-                            ),
-                          ]),
-                      child: ExpansionTile(
-                        onExpansionChanged: (value) {},
-                        title: LeftAlignedColumn(
-                          children: [
-                            Text12BlueRegular(state.userProfileResponse?.response?.data?.item?.faq?[index].kategori?.toUpperCase() ?? ""),
-                            Text16BlackSemiBold("${state.userProfileResponse?.response?.data?.item?.faq?[index].pertanyaan}", alignment: TextAlign.left),
-                          ],
-                        ).verticalPadded(8),
-                        expandedAlignment: Alignment.centerLeft,
-                        expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: html.Html(
-                              data: (state.userProfileResponse?.response?.data?.item?.faq?[index].jawaban ?? ""),
-                              onLinkTap: (url, context, attributes, element) {
-                                launchUrl(Uri.parse("$url"));
-                              },
-                            ).padded(),
-                          ),
-                        ],
-                      ),
-                    ).horizontalPadded(16).topPadded(16),
-                  );
-                },
-              ),
-            ]),
+            child: LeftAlignedColumn(children: []),
           ),
         ),
         loading: state.isLoading,

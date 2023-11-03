@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BaseColor {
-  static Color primaryColor = Color(0xFF165C7D);
+  static Color primaryColor = Color.fromARGB(255, 3, 58, 83);
   static Color primaryColorLight = Color.fromARGB(255, 31, 157, 215);
   static Color colorGrey = Color(0xFF707070);
   static Color colorLightGrey = Color(0xFFFBFBFB);
@@ -11,7 +11,7 @@ class BaseColor {
   static Color colorSecondaryButton = Color(0xFFEEEEF3);
   static Color colorBorder = Color(0xFFDDE5E5);
   static Color colorDisabled = Color(0xFFF0F0F0);
-  static Color colorYellow = Color(0xFFFFB13D);
+  static Color colorYellow = Color.fromARGB(255, 242, 148, 6);
   static Color colorDivider = Color(0xFFDDE6E5);
   static Color colorRed = Color(0xFFFF3636);
   static Color colorBlueFacebook = Color(0xFF1977F3);

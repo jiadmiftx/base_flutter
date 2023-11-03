@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mothercare_mobile/core/utils/color/color_util.dart';
+import 'package:pgn_mobile/core/utils/color/color_util.dart';
 
 class Text18BlueBold extends StatelessWidget {
   final String _text;

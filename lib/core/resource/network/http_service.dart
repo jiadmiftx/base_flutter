@@ -1,6 +1,4 @@
-import 'dart:developer';
-
-import 'package:mothercare_mobile/core/flavor/flavor_config.dart';
+import 'package:pgn_mobile/core/flavor/flavor_config.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';

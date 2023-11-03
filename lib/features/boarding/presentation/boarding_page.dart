@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
-import 'package:mothercare_mobile/core/utils/extensions/widget_util.dart';
+import 'package:pgn_mobile/core/utils/extensions/widget_util.dart';
 import 'package:flutter/material.dart';
-import 'package:mothercare_mobile/core/core.dart';
+import 'package:pgn_mobile/core/core.dart';
 
 @RoutePage()
 class BoardingPage extends StatefulWidget {

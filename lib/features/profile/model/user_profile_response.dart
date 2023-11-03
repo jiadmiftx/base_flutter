@@ -1,4 +1,6 @@
-import 'package:mothercare_mobile/core/resource/models/region_base_model.dart';
+// ignore_for_file: invalid_annotation_target
+
+import 'package:pgn_mobile/core/resource/models/region_base_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_profile_response.freezed.dart';

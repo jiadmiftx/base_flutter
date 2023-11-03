@@ -1,7 +1,10 @@
-import 'package:mothercare_mobile/core/widgets/copyritght.dart';
-import 'package:mothercare_mobile/features/ektp/ektp.dart';
-import 'package:mothercare_mobile/features/profile/bloc/profile_bloc.dart';
-import 'package:mothercare_mobile/features/profile/model/user_profile_response.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/utils/extensions/widget_util.dart';
+import 'package:pgn_mobile/features/profile/bloc/profile_bloc.dart';
 
 @RoutePage()
 class ProfilePage extends StatefulWidget {
@@ -14,7 +17,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
-    sl<ProfileBloc>().add(DataProfileEvent());
     super.initState();
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:mothercare_mobile/core/utils/extensions/fun_utils.dart';
-import 'package:mothercare_mobile/core/utils/text/text_util.dart';
+import 'package:pgn_mobile/core/utils/extensions/fun_utils.dart';
+import 'package:pgn_mobile/core/utils/text/text_util.dart';
 
 Widget buildCopyright() {
   return Column(

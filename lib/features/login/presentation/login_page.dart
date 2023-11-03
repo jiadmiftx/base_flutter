@@ -1,15 +1,13 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
-import 'package:mothercare_mobile/core/utils/toast/toast.dart';
+import 'package:pgn_mobile/core/utils/toast/toast.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:mothercare_mobile/features/login/bloc/login_bloc.dart';
+import 'package:pgn_mobile/features/login/bloc/login_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:mothercare_mobile/core/core.dart';
-import 'package:mothercare_mobile/core/utils/extensions/widget_util.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/utils/extensions/widget_util.dart';
 
 @RoutePage()
 class LoginPage extends StatefulWidget {

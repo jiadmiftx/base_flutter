@@ -1,5 +1,5 @@
 import 'package:auto_route/annotations.dart';
-import 'package:mothercare_mobile/core/utils/extensions/widget_util.dart';
+import 'package:pgn_mobile/core/utils/extensions/widget_util.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 @RoutePage()

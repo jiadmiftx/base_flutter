@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mothercare_mobile/core/core.dart';
-import 'package:mothercare_mobile/core/utils/extensions/widget_util.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/utils/extensions/widget_util.dart';
 
 class SplashWidget extends StatelessWidget {
   const SplashWidget({super.key});
@@ -11,22 +11,23 @@ class SplashWidget extends StatelessWidget {
         child: Stack(
       alignment: Alignment.center,
       children: [
-        Image.asset(
-          getSourceByJpg('splash-bg'),
-          fit: BoxFit.fitWidth,
-          height: MediaQuery.of(context).size.height,
-        ),
         Container(
-            decoration: BoxDecoration(
-              color: BaseColor.primaryColor.withOpacity(0.8),
-            ),
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Center(
-                child: Text(
-              "mothercare",
+          decoration: BoxDecoration(
+            color: BaseColor.grey,
+          ),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Center(
+            child: Text(
+              "----",
               style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.white),
-            )))
+            ),
+          ),
+        ),
+        Image.asset(
+          getSourceByPng('base_icon'),
+          height: 100,
+        ),
       ],
     ));
   }

@@ -13,10 +13,6 @@ class ProfileState extends Equatable {
   final List<RegionModel>? listVillage;
 
   // Selected Region
-  RegionModel? selectedProvince;
-  RegionModel? selectedSubDistrict;
-  RegionModel? selectedDistrict;
-  RegionModel? selectedVillage;
 
   ProfileState({
     this.userProfileResponse,
@@ -28,10 +24,6 @@ class ProfileState extends Equatable {
     this.listDistrict,
     this.listSubDistrict,
     this.listVillage,
-    this.selectedProvince,
-    this.selectedSubDistrict,
-    this.selectedDistrict,
-    this.selectedVillage,
   });
 
   ProfileState.noValue()
@@ -43,11 +35,7 @@ class ProfileState extends Equatable {
         listProvince = null,
         listDistrict = null,
         listSubDistrict = null,
-        listVillage = null,
-        selectedProvince = null,
-        selectedSubDistrict = null,
-        selectedDistrict = null,
-        selectedVillage = null;
+        listVillage = null;
 
   ProfileState copyWith({
     BaseResponse<UserProfileResponse?>? userProfileResponse,
@@ -74,10 +62,6 @@ class ProfileState extends Equatable {
       listDistrict: listDistrict ?? this.listDistrict,
       listSubDistrict: listSubDistrict ?? this.listSubDistrict,
       listVillage: listVillage ?? this.listVillage,
-      selectedProvince: selectedProvince ?? this.selectedProvince,
-      selectedDistrict: selectedDistrict ?? this.selectedDistrict,
-      selectedSubDistrict: selectedSubDistrict ?? this.selectedSubDistrict,
-      selectedVillage: selectedVillage ?? this.selectedVillage,
     );
   }
 
@@ -92,10 +76,6 @@ class ProfileState extends Equatable {
         listDistrict,
         listSubDistrict,
         listVillage,
-        selectedProvince,
-        selectedSubDistrict,
-        selectedDistrict,
-        selectedVillage,
       ];
 
   @override

@@ -1,5 +1,7 @@
-import 'package:mothercare_mobile/features/ektp/ektp.dart';
-import 'package:mothercare_mobile/features/profile/bloc/profile_bloc.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/utils/extensions/widget_util.dart';
 
 @RoutePage()
 class CartPage extends StatefulWidget {
@@ -12,7 +14,6 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   void initState() {
-    sl<ProfileBloc>().add(DataProfileEvent());
     super.initState();
   }
 

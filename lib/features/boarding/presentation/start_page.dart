@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:mothercare_mobile/core/config/bloc/config_bloc.dart';
-import 'package:mothercare_mobile/core/core.dart';
-import 'package:mothercare_mobile/core/resource/injector/injection_container.dart';
-import 'package:mothercare_mobile/core/utils/extensions/widget_util.dart';
-import 'package:mothercare_mobile/generated/l10n.dart';
+import 'package:pgn_mobile/core/config/bloc/config_bloc.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/resource/injector/injection_container.dart';
+import 'package:pgn_mobile/core/utils/extensions/widget_util.dart';
+import 'package:pgn_mobile/generated/l10n.dart';
 
 @RoutePage()
 class StartPage extends StatefulWidget {

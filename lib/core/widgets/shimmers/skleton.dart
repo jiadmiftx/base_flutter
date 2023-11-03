@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mothercare_mobile/core/utils/color/color_util.dart';
-import 'package:mothercare_mobile/features/ektp/ektp.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/utils/color/color_util.dart';
 import 'package:shimmer/shimmer.dart';
 
 class LoadingShimmer extends StatelessWidget {

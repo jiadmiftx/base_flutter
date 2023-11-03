@@ -1,15 +1,10 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:mothercare_mobile/core/utils/toast/toast.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:mothercare_mobile/features/ektp/ektp.dart';
-import 'package:mothercare_mobile/features/login/bloc/login_bloc.dart';
+import 'package:pgn_mobile/features/login/bloc/login_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:mothercare_mobile/core/core.dart';
-import 'package:mothercare_mobile/core/utils/extensions/widget_util.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/utils/extensions/widget_util.dart';
 
 @RoutePage()
 class ResetPasswordPage extends StatefulWidget {
@@ -51,7 +46,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 child: LeftAlignedColumn(
                   children: [
                     Image.asset(
-                      getSourceByPng('ic_bakso_black'),
+                      getSourceByPng('base_icon'),
                       height: 36,
                     ).padded(24),
                     Text18BlueLightestSemiBold(
@@ -107,14 +102,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                           backgroundColor: BaseColor.primaryColor,
                         ),
                         onPressed: () async {
-                          if (_form.currentState!.validate()) {
-                            // context.router.push(MainPageRoute());
-                            context.read<LoginBloc>().add(
-                                  DataResetPasswordEvent(
-                                    email: FormData.fromMap(await emailReset),
-                                  ),
-                                );
-                          }
+                          if (_form.currentState!.validate()) {}
                         },
                         child: Text14WhiteRegular("Kirim Link Reset Kata sandi").padded(8),
                       ),
@@ -127,15 +115,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           loading: state.isLoading,
         );
       },
-      listener: (BuildContext context, LoginState state) {
-        log("message ${state.resetResponse?.response}");
-        if (state.resetResponse?.statusCode != 200 && state.errorMessage == '' && !state.isLoading) {
-          context.router.pop();
-          showSuccess(context, state.resetResponse?.response?.message ?? "", 4);
-        } else if (state.errorMessage != '') {
-          showError(context, state.errorMessage);
-        }
-      },
+      listener: (BuildContext context, LoginState state) {},
     );
   }
 

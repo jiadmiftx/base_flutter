@@ -1,13 +1,10 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:mothercare_mobile/core/helpers/secure_storage/storage_key_helper.dart';
-import 'package:mothercare_mobile/core/resource/injector/injection_container.dart';
-import 'package:mothercare_mobile/core/resource/network/http_service.dart';
 import 'package:flutter/material.dart';
-import 'package:mothercare_mobile/core/core.dart';
-import 'package:mothercare_mobile/core/helpers/secure_storage/storage_helper.dart';
-import 'package:mothercare_mobile/features/splash/widgets/splash_widget.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/helpers/secure_storage/storage_helper.dart';
+import 'package:pgn_mobile/features/splash/widgets/splash_widget.dart';
 
 @RoutePage()
 class SplashPage extends StatefulWidget {

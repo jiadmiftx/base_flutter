@@ -1,4 +1,4 @@
-import 'package:mothercare_mobile/core/core.dart';
+import 'package:pgn_mobile/core/core.dart';
 import 'package:flutter/material.dart';
 
 Future<void> showError(BuildContext context, String message, [int? duration]) async {

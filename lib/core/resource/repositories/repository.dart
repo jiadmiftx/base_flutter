@@ -1,17 +1,16 @@
-import 'dart:convert';
 import 'dart:developer';
-import 'package:mothercare_mobile/core/resource/models/region_base_model.dart';
-import 'package:mothercare_mobile/core/resource/network/rest_client.dart';
-import 'package:mothercare_mobile/core/resource/repositories/repository_interface.dart';
-import 'package:mothercare_mobile/features/category/model/categroy_response.dart';
-import 'package:mothercare_mobile/features/ektp/ektp.dart';
-import 'package:mothercare_mobile/features/home/model/bottom_banner_response.dart';
-import 'package:mothercare_mobile/features/home/model/home_slider_response.dart';
-import 'package:mothercare_mobile/features/home/model/product_slider_response.dart';
-import 'package:mothercare_mobile/features/home/model/stripper_banner_response.dart';
-import 'package:mothercare_mobile/features/profile/model/update_profile_response.dart';
-import 'package:mothercare_mobile/features/profile/model/user_profile_response.dart';
-import 'package:mothercare_mobile/features/register/model/register_response.dart';
+import 'package:dio/dio.dart';
+import 'package:pgn_mobile/core/resource/models/base_response.dart';
+import 'package:pgn_mobile/core/resource/models/region_base_model.dart';
+import 'package:pgn_mobile/core/resource/network/rest_client.dart';
+import 'package:pgn_mobile/core/resource/repositories/repository_interface.dart';
+import 'package:pgn_mobile/features/home/model/bottom_banner_response.dart';
+import 'package:pgn_mobile/features/home/model/home_slider_response.dart';
+import 'package:pgn_mobile/features/home/model/product_slider_response.dart';
+import 'package:pgn_mobile/features/home/model/stripper_banner_response.dart';
+import 'package:pgn_mobile/features/profile/model/update_profile_response.dart';
+import 'package:pgn_mobile/features/profile/model/user_profile_response.dart';
+import 'package:pgn_mobile/features/register/model/register_response.dart';
 
 class Repository implements RepositoryInterface {
   final RestClient _rest;
@@ -150,31 +149,6 @@ class Repository implements RepositoryInterface {
   }
 
   @override
-  Future<BaseResponse<CategroyResponse>> doGetCategory({String? storeCode}) async {
-    try {
-      final response = await _rest.doGetCategory(storeCode);
-      final requested = CategroyResponse.fromJson(response.response.data);
-
-      return BaseResponse<CategroyResponse>(
-        errorMessage: null,
-        status: response.response.statusMessage == "OK",
-        response: requested,
-        statusCode: response.response.statusCode,
-      );
-    } on DioError catch (e) {
-      return BaseResponse<CategroyResponse>(
-        errorMessage: e.response?.data['message'],
-        status: e.response?.data['success'],
-        response: null,
-        statusCode: e.response?.data['code'],
-      );
-    } catch (e) {
-      log("doGetRequestHomeNewArrival___: ${e}");
-      return BaseResponse<CategroyResponse>();
-    }
-  }
-
-  @override
   Future<BaseResponse<List<RegionModel>>> doGetDistrict({String? provinceCode}) {
     // TODO: implement doGetDistrict
     throw UnimplementedError();
@@ -205,12 +179,6 @@ class Repository implements RepositoryInterface {
   }
 
   @override
-  Future<BaseResponse<LoginResponse>> doLogin({required String email, required String password}) {
-    // TODO: implement doLogin
-    throw UnimplementedError();
-  }
-
-  @override
   Future<BaseResponse> doLogout() {
     // TODO: implement doLogout
     throw UnimplementedError();
@@ -237,6 +205,18 @@ class Repository implements RepositoryInterface {
   @override
   Future<BaseResponse<UpadeteProfileResponse>> doUpdateProfile({required FormData updateProfileRequest}) {
     // TODO: implement doUpdateProfile
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<dynamic> doGetCategory({String? storeCode}) {
+    // TODO: implement doGetCategory
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<dynamic> doLogin({required String email, required String password}) {
+    // TODO: implement doLogin
     throw UnimplementedError();
   }
 }

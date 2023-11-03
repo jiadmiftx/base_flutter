@@ -3,9 +3,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:equatable/equatable.dart';
-import 'package:mothercare_mobile/core/config/helpers/lang_config.dart';
-import 'package:mothercare_mobile/core/preference/pref_key_helper.dart';
-import 'package:mothercare_mobile/core/preference/preference_helper.dart';
+import 'package:pgn_mobile/core/config/helpers/lang_config.dart';
+import 'package:pgn_mobile/core/preference/pref_key_helper.dart';
+import 'package:pgn_mobile/core/preference/preference_helper.dart';
 
 part 'config_event.dart';
 part 'config_state.dart';

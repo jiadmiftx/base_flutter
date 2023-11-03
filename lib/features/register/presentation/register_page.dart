@@ -1,10 +1,22 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:mothercare_mobile/core/helpers/date/time.dart';
-import 'package:mothercare_mobile/core/resource/models/region_base_model.dart';
-import 'package:mothercare_mobile/features/ektp/ektp.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http_parser/http_parser.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/helpers/date/time.dart';
+import 'package:pgn_mobile/core/resource/models/region_base_model.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:mothercare_mobile/features/register/bloc/register_bloc.dart';
+import 'package:pgn_mobile/core/utils/extensions/widget_util.dart';
+import 'package:pgn_mobile/core/widgets/generic_spiner_form.dart';
+import 'package:pgn_mobile/core/widgets/image_picker.dart';
+import 'package:pgn_mobile/core/widgets/textfield_widget.dart';
+import 'package:pgn_mobile/features/register/bloc/register_bloc.dart';
 
 @RoutePage()
 class RegisterPage extends StatefulWidget {
@@ -45,7 +57,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   void initState() {
-    sl<RegisterBloc>().add(DataGetProvince());
     super.initState();
   }
 
@@ -100,7 +111,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: LeftAlignedColumn(
                   children: [
                     Image.asset(
-                      getSourceByPng('ic_bakso_black'),
+                      getSourceByPng('base_icon'),
                       height: 36,
                     ).padded(24),
                     Text18BlueLightestSemiBold(
@@ -132,7 +143,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                             _startTimer();
                                             _typeVerifCtrl.text = 'email';
                                           });
-                                          sl<RegisterBloc>().add(DataResendOtpEvent(resendOtpRequest: FormData.fromMap(await resendOtpData)));
                                         },
                                         child: LeftAlignedRow(children: [
                                           Icon(
@@ -149,7 +159,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                             _startTimer();
                                             _typeVerifCtrl.text = 'wa';
                                           });
-                                          sl<RegisterBloc>().add(DataResendOtpEvent(resendOtpRequest: FormData.fromMap(await resendOtpData)));
                                         },
                                         child: LeftAlignedRow(
                                           children: [
@@ -286,7 +295,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     state.selectedDistrict = null;
                                     state.selectedSubDistrict = null;
                                     state.selectedVillage = null;
-                                    sl<RegisterBloc>().add(DataGetDistrict(provinceCode: s?.kode));
+                                    // sl<RegisterBloc>().add(DataGetDistrict(provinceCode: s?.kode));
                                   });
                                 },
                                 items: infoItemProvincesToDropdown(state.listProvince),
@@ -301,7 +310,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                     _kabupatenCtrl.text = s?.nama ?? "";
                                     state.selectedSubDistrict = null;
                                     state.selectedVillage = null;
-                                    sl<RegisterBloc>().add(DataSubGetDistrict(districtCode: s?.kode));
                                   });
                                 },
                                 items: infoItemDistrictToDropdown(state.listDistrict),
@@ -315,7 +323,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                     state.selectedSubDistrict = s;
                                     _kecamatanCtrl.text = s?.nama ?? "";
                                     state.selectedVillage = null;
-                                    sl<RegisterBloc>().add(DataGetVillage(subDistrictCode: s?.kode));
                                   });
                                 },
                                 items: infoItemSubDistrictToDropdown(state.listSubDistrict),
@@ -399,9 +406,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           backgroundColor: BaseColor.primaryColor,
                         ),
                         onPressed: () async {
-                          if (_form.currentState!.validate()) {
-                            sl<RegisterBloc>().add(DataRegisterUserEvent(registerUserRequest: FormData.fromMap(await registerData)));
-                          }
+                          if (_form.currentState!.validate()) {}
                         },
                         child: Text14WhiteRegular(isOtpForm ? "Verifikasi" : "Daftar").padded(8),
                       ),
@@ -432,28 +437,7 @@ class _RegisterPageState extends State<RegisterPage> {
           loading: state.isLoading,
         );
       },
-      listener: (BuildContext context, RegisterState state) {
-        if (state.errorMessage == 'OK' && state.statusCode == 200) {
-          context.router.replaceAll([LoginPageRoute()]);
-          showSuccess(context, "Daftar berhasil, silahkan masuk menggunakan email yang baru saja Anda daftarkan", 7);
-        } else if (state.errorMessage != '' && state.statusCode == 401) {
-          context.router.replaceAll([LoginPageRoute()]);
-          showSuccess(context, "${state.errorMessage}", 5);
-        } else if (state.errorMessage != '' && state.statusCode == 403 && !isOtpForm) {
-          setState(() {
-            _startTimer();
-            isOtpForm = true;
-          });
-          showWarning(context, "${state.errorMessage}", 5);
-        } else if (state.errorMessage != '' && state.statusCode == 200 && isOtpForm) {
-          showWarning(context, "${state.errorMessage}", 5);
-        } else if (state.errorMessage != '' && state.statusCode == 422) {
-          showError(context, "${state.errorMessage}", 5);
-        } else if (state.errorMessage != '' && state.statusCode == 409) {
-          _otpCtrl.clear();
-          showError(context, "${state.errorMessage}", 5);
-        }
-      },
+      listener: (BuildContext context, RegisterState state) {},
     );
   }
 
@@ -463,16 +447,6 @@ class _RegisterPageState extends State<RegisterPage> {
       "nik": int.parse(_nikCtrl.text),
       "no_kk": int.parse(_kkCtrl.text),
       "nama": _nameCtrl.text,
-      "jenis_kelamin": _genderCtrl.text,
-      "no_hp": int.parse(_numberCtrl.text),
-      "provinsi": _provinceCtrl.text,
-      "kabupaten": _kabupatenCtrl.text,
-      "kecamatan": _kecamatanCtrl.text,
-      "alamat": _addressCtrl.text,
-      "desa": _desaCtrl.text,
-      "email": _emailCtrl.text,
-      "password": _passwordCtrl.text,
-      "password_confirmation": _retypePasswordCtrl.text,
       "file_photo": fileFoto != null ? await MultipartFile.fromFile(fileFoto?.path ?? "", filename: fileFoto?.name.split("/").last, contentType: MediaType.parse("image/jpeg")) : "",
     };
   }

@@ -1,28 +1,34 @@
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:mothercare_mobile/core/config/bloc/config_bloc.dart';
-import 'package:mothercare_mobile/core/preference/pref_key_helper.dart';
-import 'package:mothercare_mobile/core/preference/preference_helper.dart';
-import 'package:mothercare_mobile/core/utils/notification/notification_service.dart';
-import 'package:mothercare_mobile/features/category/bloc/category_bloc.dart';
-import 'package:mothercare_mobile/features/ektp/bloc/ektp_bloc.dart';
-import 'package:mothercare_mobile/features/ektp/ektp.dart';
-import 'package:mothercare_mobile/features/home/bloc/home_bloc.dart';
-import 'package:mothercare_mobile/features/notifikasi/bloc/notification_bloc.dart';
-import 'package:mothercare_mobile/features/profile/bloc/profile_bloc.dart';
-import 'package:mothercare_mobile/firebase_options.dart';
+import 'package:pgn_mobile/core/config/bloc/config_bloc.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/helpers/secure_storage/storage_helper.dart';
+import 'package:pgn_mobile/core/helpers/secure_storage/storage_key_helper.dart';
+import 'package:pgn_mobile/core/preference/pref_key_helper.dart';
+import 'package:pgn_mobile/core/preference/preference_helper.dart';
+import 'package:pgn_mobile/core/utils/notification/notification_service.dart';
+
+import 'package:pgn_mobile/features/home/bloc/home_bloc.dart';
+import 'package:pgn_mobile/features/notifikasi/bloc/notification_bloc.dart';
+import 'package:pgn_mobile/features/profile/bloc/profile_bloc.dart';
+import 'package:pgn_mobile/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:mothercare_mobile/core/flavor/flavor_config.dart';
-import 'package:mothercare_mobile/features/login/bloc/login_bloc.dart';
-import 'package:mothercare_mobile/features/register/bloc/register_bloc.dart';
-import 'package:mothercare_mobile/core/resource/injector/injection_container.dart' as injector;
+import 'package:pgn_mobile/core/flavor/flavor_config.dart';
+import 'package:pgn_mobile/features/login/bloc/login_bloc.dart';
+import 'package:pgn_mobile/features/register/bloc/register_bloc.dart';
+import 'package:pgn_mobile/core/resource/injector/injection_container.dart' as injector;
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
-import 'package:mothercare_mobile/generated/l10n.dart';
+import 'package:pgn_mobile/generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'core/resource/injector/injection_container.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -45,10 +51,10 @@ void main() async {
   FlavorConfig(
     flavor: FlavorType.prod,
     color: Colors.blue,
-    server: 'https://www.mothercare.co.id/rest/mothercare_website_english/V1',
+    server: '',
     webApiServer: '',
     values: const FlavorValues(
-      titleApp: "Mothercare Indonesia",
+      titleApp: "Flutter Indonesia",
     ),
   );
   injector.init();
@@ -133,12 +139,6 @@ class _MyAppState extends State<MyApp> {
       BlocProvider<RegisterBloc>(
         create: (BuildContext context) => sl<RegisterBloc>(),
       ),
-      BlocProvider<EktpBloc>(
-        create: (BuildContext context) => sl<EktpBloc>(),
-      ),
-      BlocProvider<EktpBloc>(
-        create: (BuildContext context) => sl<EktpBloc>(),
-      ),
       BlocProvider<ProfileBloc>(
         create: (BuildContext context) => sl<ProfileBloc>(),
       ),
@@ -147,9 +147,6 @@ class _MyAppState extends State<MyApp> {
       ),
       BlocProvider<HomeBloc>(
         create: (BuildContext context) => sl<HomeBloc>(),
-      ),
-      BlocProvider<CategoryBloc>(
-        create: (BuildContext context) => sl<CategoryBloc>(),
       ),
     ], child: app);
   }

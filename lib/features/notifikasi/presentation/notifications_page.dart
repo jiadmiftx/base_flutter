@@ -1,6 +1,7 @@
-import 'package:flutter/widgets.dart';
-import 'package:mothercare_mobile/features/ektp/ektp.dart';
-import 'package:mothercare_mobile/features/notifikasi/bloc/notification_bloc.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:pgn_mobile/core/core.dart';
+import 'package:pgn_mobile/core/utils/extensions/widget_util.dart';
 
 @RoutePage()
 class NotificationsPage extends StatefulWidget {
@@ -13,49 +14,13 @@ class NotificationsPage extends StatefulWidget {
 class _NotificationsPageState extends State<NotificationsPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NotificationBloc, NotificationState>(
-      builder: (context, state) {
-        return Loadable(
-          appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: BaseColor.primaryColor,
-            title: Text18WhitekBold("Pemberitahuan"),
-          ),
-          child: SafeArea(
-            child: (state.userNotificationResponse?.response?.data?.data?.isEmpty ?? true)
-                ? _buildEmptyWidget()
-                : ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: state.userNotificationResponse?.response?.data?.data?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      final data = state.userNotificationResponse?.response?.data?.data?[index];
-                      return Container(
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(6), color: data?.isRead == 0 ? Colors.white : Colors.grey[100], boxShadow: [
-                          BoxShadow(
-                            blurRadius: 4,
-                            color: data?.isRead == 0 ? Colors.black.withOpacity(0.15) : Colors.black.withOpacity(0.15),
-                            spreadRadius: 0,
-                          ),
-                        ]),
-                        child: ListTile(
-                          onTap: () {
-                            showAlertNotifDetail(context, textTitle: data?.message?.title ?? "", textDesc: data?.message?.body ?? "", date: data?.createdAt ?? "");
-                            sl<NotificationBloc>().add(DataReadNotificationEvent(id_notif: data?.id.toString() ?? ""));
-                          },
-                          title: data?.isRead == 0 ? Text14BlackMedium(data?.message?.title ?? "") : Text14Black414Medium(data?.message?.title ?? ""),
-                          subtitle: data?.isRead == 0 ? Text14BlackRegular(data?.createdAt ?? "") : Text12BlackRegular(data?.createdAt ?? ""),
-                        ).padded(8),
-                      ).horizontalPadded(8).topPadded(8);
-                    }),
-          ),
-          loading: state.isLoading,
-        );
-      },
-      listener: (context, state) {
-        if (state.readNotifResponse?.statusCode == 200 && state.errorMessage == '') {
-          sl<NotificationBloc>().add(DataGetAllNotificationEvent());
-        }
-      },
+    return Loadable(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: BaseColor.primaryColor,
+        title: Text18WhitekBold("Pemberitahuan"),
+      ),
+      child: SafeArea(child: _buildEmptyWidget()),
     );
   }
 
@@ -66,7 +31,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
       children: [
         Center(
           child: Image.asset(
-            getSourceByPng('ic_bakso_grey'),
+            getSourceByPng('base_icon'),
             height: 40,
           ),
         ).padded(),
